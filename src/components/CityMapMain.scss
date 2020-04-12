@@ -1,3 +1,40 @@
+$logoWidth: 392;
+$enterWidth: 100;
+
 .mainContainer {
-  text-align: center;
+}
+
+.homepageLogoContainer {
+  width: ($logoWidth + $enterWidth)* 1px;
+  margin-left: calc(50% - #{($logoWidth/2) * 1px});
+  margin-top: 120px;
+}
+
+.homepageLogo {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+
+  .logo {
+    &img {
+      width: $logoWidth *1px;
+      height: auto;
+    }
+  }
+
+  .link {
+    margin-top: 406px;
+    margin-left: 28px;
+    a {
+      text-decoration: none;
+      color: #000000;
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+}
+.logoFooter {
+  text-align: right;
+  font-size: 18px;
+  font-weight: 500;
 }
