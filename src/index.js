@@ -1,22 +1,12 @@
-import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
-
-const CityMapMain = lazy(() => import("./components/CityMapMain"));
-const MapContainer = lazy(() => import("./components/MapContainer"));
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Switch>
-          <Route exact path="/" component={CityMapMain} />
-          <Route exact path="/map" component={MapContainer} />
-        </Switch>
-      </Suspense>
-    </Router>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
