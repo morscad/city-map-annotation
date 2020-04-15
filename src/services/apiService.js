@@ -3,7 +3,6 @@ const api = {
     url,
     data,
     type,
-    appKey,
     specifyContentType = true,
     stringifyBody = true,
   ) => {
@@ -15,7 +14,7 @@ const api = {
       options.headers['Accept'] = 'application/json';
       options.headers['Content-Type'] = 'application/json';
     }
-    options.headers['key'] = appKey;
+    options.headers['key'] = process.env.REACT_APP_APP_KEY;
 
     if (type === 'POST' || type === 'PUT') {
       if (stringifyBody) {
@@ -27,7 +26,6 @@ const api = {
         options.body = data;
       }
     }
-    console.log(url);
     try {
       const rawResult = await fetch(url, options);
       const result = await rawResult.json();
