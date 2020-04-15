@@ -13,7 +13,7 @@ function CityMapMain() {
         <div className={"homepageLogoContainer"}>
           <div className={"homepageLogo"}>
             <div className={"logo"}>
-              <img src={homepageLogo} />
+              <img src={homepageLogo} alt={"Caity Data Stories Home Page"} />
             </div>
             <div className={"link"}>
               <Link to={"/map"}>enter &raquo;</Link>
