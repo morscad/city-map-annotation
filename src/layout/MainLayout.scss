@@ -1,12 +1,49 @@
+$maxWidth: 1200;
 
 .mainContainer {
-
-}
-
-.headerLayout {
-
 }
 
 .mainContent {
+  width: calc(100% - 20px);
+  max-width: $maxWidth * 1px;
+  margin: 0 auto;
+  padding: 10px;
+}
 
+.headerLayout {
+  width: 100%;
+  max-width: $maxWidth * 1px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+.headerLogo {
+  padding: 10px;
+
+  img {
+    width: 50px;
+    height: auto;
+  }
+}
+.headerLink {
+  font-size: 18px;
+  font-weight: 400;
+  margin-left: 24px;
+  padding-top: 30px;
+  a {
+    color: #000000;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.headerLinkActive {
+  font-size: 18px;
+  font-weight: 400;
+  color: #f1dd81;
+  margin-left: 24px;
+  padding-top: 30px;
 }
