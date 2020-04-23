@@ -27,7 +27,7 @@ const SearchBox = ({ MapContext, showEyebrow }) => {
           Type and address, find an intersection, or look up a name to navigate the neighborhood's annotations
         </div>
       )}
-      <div className={'controlsContainer'}>
+      <div className={`controlsContainer ${ showEyebrow ? 'full' : 'threeQuarters'}`}>
         <div className={'searchInput'}>
           <PlacesAutocomplete value={address} onChange={handleAddressChange} onSelect={handleAddressSelect}>
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
