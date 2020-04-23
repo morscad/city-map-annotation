@@ -1,4 +1,5 @@
 $logoWidth: 392;
+$logoHeight: 440;
 $enterWidth: 100;
 
 .mainContainer {
@@ -16,15 +17,61 @@ $enterWidth: 100;
   flex-direction: row;
 
   .logo {
-    &img {
-      width: $logoWidth *1px;
-      height: auto;
+    display: flex;
+    flex-direction: row;
+    width: 392px;
+    & :nth-child(1) {
+      width: ($logoWidth/2) * 1px;
+      height: $logoHeight * 1px;
+      overflow: hidden;
+      .motionContainer {
+        position: relative;
+        left: ($logoWidth/2) * 1px;
+        animation: leftIntroMotion 0.5s forwards;
+        animation-timing-function: ease-out;
+        animation-delay: 0.25s;
+      }
+      &img {
+
+      }
     }
+    & :nth-child(2) {
+      width: ($logoWidth/2) * 1px;
+      height: $logoHeight * 1px;
+      overflow: hidden;
+      .motionContainer {
+        position: relative;
+        left: ($logoWidth/2) * -1px;
+        animation: rightIntroMotion 0.5s forwards;
+        animation-delay: 0.5s;
+        animation-timing-function: ease-out;
+      }
+    }
+
   }
+
+  @keyframes leftIntroMotion {
+    from {left: ($logoWidth/2) * 1px;}
+    to {left: 0px;}
+  }
+
+  @keyframes rightIntroMotion {
+    from {left: ($logoWidth/2) * -1px;}
+    to {left: 0px;}
+  }
+  @keyframes textOpacity {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
 
   .link {
     margin-top: 406px;
     margin-left: 28px;
+    opacity: 0;
+    animation: textOpacity 0.5s forwards;
+    animation-delay: 1s;
+    animation-timing-function: ease-out;
     a {
       text-decoration: none;
       color: #000000;
@@ -37,4 +84,8 @@ $enterWidth: 100;
   text-align: right;
   font-size: 18px;
   font-weight: 500;
+  opacity: 0;
+  animation: textOpacity 0.5s forwards;
+  animation-delay: 1.25s;
+  animation-timing-function: ease-out;
 }

@@ -1,0 +1,32 @@
+.mapBlock {
+  width: 100%;
+  min-height: 750px;
+  background-color: #f1dd81;
+  border-radius: 20px;
+
+  padding-top: 20px;
+}
+
+.instructions {
+  padding: 20px;
+  font-size: 20px;
+
+  .title {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 24px;
+  }
+  .subTitle {
+    font-weight: 500;
+  }
+  .introBody {
+    margin: 20px 0;
+
+    .imagify {
+      font-style: italic;
+      font-weight: 700;
+    }
+  }
+
+}
+
