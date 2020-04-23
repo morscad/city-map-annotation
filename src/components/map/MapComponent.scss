@@ -1,7 +1,7 @@
 .mapContainer {
   width: calc(100% - 40px);
   margin: 10px auto 20px ;
-  height: 620px;
+  height: calc(100vh - 290px);
   border-radius: 20px;
-  border: 3px solid #FFFFFF;
+  border: 3px solid #d3c16f;
 }

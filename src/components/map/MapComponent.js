@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './MapComponent.scss';
 import { GoogleMap } from '@react-google-maps/api';
 import { isFunction } from 'lodash';
+import mapStyles from '../../mapStyle/mapStyle'
 
 const MapComponent = ({ MapContext, children, resetAnnotations, callAnnotationService, handleAnnotationPointSelect  }) => {
   const [mapState, setMapState] = useContext(MapContext);
   const [map, setMap] = useState();
 
-  const onMapBoundsChanged = () => {
+  const onMapBoundsChanged = (force = false) => {
     if (map && isFunction(map.getCenter)) {
-      if (map.getCenter().lng() !== mapState.lng || map.getCenter().lat() !== mapState.lat || map.getZoom() !== mapState.zoom) {
+      if (force || (!force && (map.getCenter().lng() !== mapState.lng || map.getCenter().lat() !== mapState.lat || map.getZoom() !== mapState.zoom))) {
         const { Ua, Ya } = map.getBounds();
         setMapState({
           lng: map.getCenter().lng(),
@@ -30,6 +31,9 @@ const MapComponent = ({ MapContext, children, resetAnnotations, callAnnotationSe
   return (
     <GoogleMap
       zoom={mapState.zoom}
+      options={{
+          styles: mapStyles,
+      }}
       center={{
         lat: mapState.lat,
         lng: mapState.lng,
