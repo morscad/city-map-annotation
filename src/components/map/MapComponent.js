@@ -2,9 +2,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import './MapComponent.scss';
 import { GoogleMap } from '@react-google-maps/api';
 import { isFunction } from 'lodash';
-import mapStyles from '../../mapStyle/mapStyle'
+import retroMapStyle from '../../mapStyle/retroMapStyle'
+import silverMapStyle from '../../mapStyle/silverMapStyle'
 
-const MapComponent = ({ MapContext, children, resetAnnotations, callAnnotationService, handleAnnotationPointSelect  }) => {
+const MapComponent = ({ MapContext, children, mapStyle, resetAnnotations, callAnnotationService, handleAnnotationPointSelect  }) => {
   const [mapState, setMapState] = useContext(MapContext);
   const [map, setMap] = useState();
 
@@ -32,7 +33,7 @@ const MapComponent = ({ MapContext, children, resetAnnotations, callAnnotationSe
     <GoogleMap
       zoom={mapState.zoom}
       options={{
-          styles: mapStyles,
+          styles: mapStyle === 'retro' ? retroMapStyle : silverMapStyle,
       }}
       center={{
         lat: mapState.lat,
