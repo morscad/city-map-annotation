@@ -13,10 +13,10 @@ const App = () => {
     lng: -73.9981527,
     lat: 40.7308238,
     zoom: 15.5,
-    minLng: -73.9981527,
-    minLat: 40.7308238,
-    maxLng: -73.9981527,
-    maxLat: 40.7308238,
+    minLng: -74.01446053081055,
+    minLat: 40.724205541822558,
+    maxLng: -73.98184486918946,
+    maxLat: 40.73744139997255,
   });
   return (
     <MapContext.Provider value={[mapState, setMapState]}>
