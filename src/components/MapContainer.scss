@@ -1,8 +1,10 @@
-.mapBlock {
+.mapBlockMain {
   width: 100%;
   min-height: 750px;
-  background-color: #f1dd81;
-  border-radius: 20px;
+  height: calc(100vh - 140px);
+  /*background-color: #f1dd81;*/
+  background: linear-gradient( 180deg, #f1dd81, #FFFFFF);
+  border-radius: 5px 5px 0px 0px;
 }
 
 
@@ -31,20 +33,103 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   a {
     text-decoration: none;
   }
 }
-.filters {
-}
-.addYours {
-  width: 150px;
-  height: 36px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 5px;
 
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 5px;
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+}
+
+.filtersTitle {
+  font-size: 22px;
+  margin-right: 40px;
+}
+.filtersSelector {
+  margin-right: 20px;
+}
+
+.checkmarkContainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkmarkContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #FFFFFF;
+}
+
+/* On mouse-over, add a grey background color */
+.checkmarkContainer:hover input ~ .checkmark {
+  background-color: #a5af79;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkmarkContainer input:checked ~ .checkmark {
+  background-color: #a5af79;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkmarkContainer .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+
+
+
+%add {
+  width: 120px;
+  height: 36px;
+
   background-color: #FFFFFF;
   border: 1px solid #f1dd81;
 
@@ -82,14 +167,12 @@
 }
 
 
-
-
-
 .hoodmapsTag {
   font-weight: 900;
-  -webkit-text-fill-color: #f49b28;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #666666;
+  -webkit-text-fill-color: #f1dd81;
+  /*-webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #a5af79;*/
+  text-shadow: 2px 2px 3px #656b4b;
 }
 
 .imageTag {
@@ -103,4 +186,101 @@
       border: 2px solid #000000;
     }
   }
+}
+
+
+.popupContainer {
+  position: absolute;
+  top: 104px;
+  left: 100vw;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  background-color: #FFFFFF;
+  z-index: 100;
+}
+
+.addYours {
+  @extend %add;
+  border-radius: 20px 0 0 20px;
+
+  position: absolute;
+  top: 210px;
+  z-index: 110;
+
+}
+
+.closeAddYours {
+  @extend %add;
+  border-radius: 0 20px 20px 0;
+
+  position: absolute;
+  top: 130px;
+
+  z-index: 120;
+}
+
+.popContainerIn {
+  animation: slideIn 0.5s forwards;
+  animation-timing-function: ease-out;
+}
+@keyframes slideIn {
+  from {left: 100vw;}
+  to {left: 0px;}
+}
+
+.popContainerOut {
+  animation: slideOut 0.5s forwards;
+  animation-timing-function: ease-in;
+}
+@keyframes slideOut {
+  from {left: 0px;}
+  to {left: 100vw;}
+}
+
+
+.initLeftButton {
+  right: -1px;
+}
+.hideLeftButton {
+  right: -1px;
+  animation: hideLeftBtnAnim 0.5s forwards;
+  animation-timing-function: ease-out;
+}
+@keyframes hideLeftBtnAnim {
+  from {right: -1px;}
+  to {right: -140px;}
+}
+.showLeftButton {
+  right: -140px;
+  animation: showLeftBtnAnim 0.5s forwards;
+  animation-timing-function: ease-in;
+  animation-delay: 0.5s;
+}
+@keyframes showLeftBtnAnim {
+  from {right: -140px;}
+  to {right: -1px;}
+}
+
+
+.initRightButton {
+  left: -140px;
+}
+.hideRightButton {
+  left: -1px;
+  animation: hideRightBtnAnim 0.5s forwards;
+  animation-timing-function: ease-in;
+}
+@keyframes hideRightBtnAnim {
+  from {left: -1px;}
+  to {left: -140px;}
+}
+.showRightButton {
+  left: -140px;
+  animation: showRightBtnAnim 0.5s forwards;
+  animation-timing-function: ease-in;
+  animation-delay: 0.5s;
+}
+@keyframes showRightBtnAnim {
+  from {left: -140px;}
+  to {left: -1px;}
 }
