@@ -1,0 +1,47 @@
+.instructions {
+  padding: 20px;
+  font-size: 20px;
+  position: absolute;
+  z-index: 110;
+  background-color: rgba(0, 0, 0, 0.6);
+  left: 10%;
+  right: 10%;
+  top: 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 20px 40px;
+
+  .title {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 24px;
+  }
+  .subTitle {
+    font-weight: 500;
+  }
+  .introBody {
+    margin: 20px 0;
+
+    .imagify {
+      font-style: italic;
+      font-weight: 700;
+    }
+  }
+
+  .hideLine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .hideNow {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 10px 40px;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: #cccccc;
+      }
+    }
+  }
+}
