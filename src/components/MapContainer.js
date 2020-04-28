@@ -17,10 +17,10 @@ import AddFileComponent from "./map/AddFileComponent";
 
 const MapContainer = ({ MapContext }) => {
   let delayCounter;
+  const [mapState, setMapState] = useContext(MapContext);
 
   const [hoodmapsTags, setHoodmapsTags] = useState([]);
   const [images, setImages] = useState([]);
-  const [mapState, setMapState] = useContext(MapContext);
   const [showImages, setShowImages] = useState(true);
   const [showTags, setShowTags] = useState(true);
 
@@ -62,7 +62,7 @@ const MapContainer = ({ MapContext }) => {
             <div className={'filtersSelector'}>
               <label className="checkmarkContainer">
                 Hoodmaps
-                <input type="checkbox" checked={showTags}onClick={() => { setShowTags(!showTags)}}/>
+                <input type="checkbox" checked={showTags} onClick={() => { setShowTags(!showTags)}}/>
                   <span className="checkmark"></span>
               </label>
             </div>
@@ -108,6 +108,7 @@ const MapContainer = ({ MapContext }) => {
         setPopOverClass('popContainerIn');
         setLeftBtnClass('hideLeftButton');
         setRightBtnClass('showRightButton');
+        setMapState({...mapState, openAnnotateOverlay: true});
       }}>
         <div className={'addYoursText'}>add yours</div>
         <div className={'addYoursCircle'}>
@@ -119,6 +120,7 @@ const MapContainer = ({ MapContext }) => {
         setPopOverClass('popContainerOut');
         setLeftBtnClass('showLeftButton');
         setRightBtnClass('hideRightButton');
+        setMapState({...mapState, openAnnotateOverlay: false});
       }}>
         <div className={'addYoursText'}>Close</div>
         <div className={'addYoursCircle'}>

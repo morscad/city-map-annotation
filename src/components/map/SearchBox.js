@@ -15,18 +15,16 @@ const SearchBox = ({ MapContext, showEyebrow }) => {
     geocodeByAddress(searchAddress)
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
-        setMapState({ lng: latLng.lng, lat: latLng.lat, zoom: mapState.zoom });
+        setMapState({ ...mapState, lng: latLng.lng, lat: latLng.lat });
         console.log('Success', latLng);
       })
       .catch((error) => console.error('Error', error));
   };
   return (
     <>
-      {showEyebrow && (
         <div className={'searchEyebrow'}>
           Type and address, find an intersection, or look up a name to navigate the neighborhood's annotations
         </div>
-      )}
       <div className={`controlsContainer ${ showEyebrow ? 'full' : 'threeQuarters'}`}>
         <div className={'searchInput'}>
           <PlacesAutocomplete value={address} onChange={handleAddressChange} onSelect={handleAddressSelect}>

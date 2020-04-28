@@ -14,9 +14,7 @@ const MapComponent = ({ MapContext, children, mapStyle, resetAnnotations, callAn
       if (force || (!force && (map.getCenter().lng() !== mapState.lng || map.getCenter().lat() !== mapState.lat || map.getZoom() !== mapState.zoom))) {
         const { Ua, Ya } = map.getBounds();
         setMapState({
-          lng: map.getCenter().lng(),
-          lat: map.getCenter().lat(),
-          zoom: map.getZoom(),
+          ...mapState,
           minLng: Ua.i,
           minLat: Ya.i,
           maxLng: Ua.j,

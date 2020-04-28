@@ -17,6 +17,7 @@ const App = () => {
     minLat: 40.724205541822558,
     maxLng: -73.98184486918946,
     maxLat: 40.73744139997255,
+    openAnnotateOverlay: false
   });
   return (
     <MapContext.Provider value={[mapState, setMapState]}>
