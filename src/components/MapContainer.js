@@ -10,7 +10,8 @@ import './MapContainer.scss';
 import api from '../services/apiService';
 import SearchBox from './map/SearchBox';
 import MapComponent from './map/MapComponent';
-import AddFileComponent from "./map/AddFileComponent";
+import AddFileComponent from './map/AddFileComponent';
+import AnnotationDetail from "./map/AnnotationDetail";
 
 const MapContainer = ({ MapContext }) => {
   let delayCounter;
@@ -25,6 +26,8 @@ const MapContainer = ({ MapContext }) => {
   const [popOverClass, setPopOverClass] = useState('');
   const [leftBtnClass, setLeftBtnClass] = useState('initLeftButton');
   const [rightBtnClass, setRightBtnClass] = useState('initRightButton');
+
+  const [mediaDetailedFileIndex, setMediaDetailedFileIndex] = useState(-1);
 
   const resetAnnotations = () => {
     setHoodmapsTags([]);
@@ -48,6 +51,10 @@ const MapContainer = ({ MapContext }) => {
       setImages(result.images);
     }
   };
+
+  const closeDetailsPopup = () => {
+    setMediaDetailedFileIndex(-1);
+  }
 
   useEffect(() => {
     if (mapState.openAnnotateOverlay) {
@@ -74,21 +81,39 @@ const MapContainer = ({ MapContext }) => {
             <div className={'filtersSelector'}>
               <label className="checkmarkContainer">
                 Hoodmaps
-                <input type="checkbox" checked={showTags} onClick={() => { setShowTags(!showTags)}}/>
-                  <span className="checkmark"></span>
+                <input
+                  type="checkbox"
+                  checked={showTags}
+                  onClick={() => {
+                    setShowTags(!showTags);
+                  }}
+                />
+                <span className="checkmark"></span>
               </label>
             </div>
             <div className={'filtersSelector'}>
               <label className="checkmarkContainer">
                 Images
-                <input type="checkbox" checked={showImages} onClick={() => { setShowImages(!showImages)}}/>
-                  <span className="checkmark"></span>
+                <input
+                  type="checkbox"
+                  checked={showImages}
+                  onClick={() => {
+                    setShowImages(!showImages);
+                  }}
+                />
+                <span className="checkmark"></span>
               </label>
             </div>
             <div className={'filtersSelector'}>
               <label className="checkmarkContainer">
                 Sounds
-                <input type="checkbox" checked={showSounds} onClick={() => { setShowSounds(!showSounds)}}/>
+                <input
+                  type="checkbox"
+                  checked={showSounds}
+                  onClick={() => {
+                    setShowSounds(!showSounds);
+                  }}
+                />
                 <span className="checkmark"></span>
               </label>
             </div>
@@ -96,54 +121,84 @@ const MapContainer = ({ MapContext }) => {
         </div>
 
         <div>
-          <MapComponent MapContext={MapContext} resetAnnotations={resetAnnotations} callAnnotationService={callAnnotationService} mapStyle={'retro'}>
-            {showTags && hoodmapsTags.map((hoodmapTag, index) => {
-              const position = { lat: hoodmapTag.latitude, lng: hoodmapTag.longitude };
-              const fSize = 16 + (40 * hoodmapTag.votes) / 100;
-              return (
-                <OverlayView position={position} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={`tages_${index}`}>
-                  <div className={'hoodmapsTag'} style={{ fontSize: fSize }}>
-                    {hoodmapTag.tag}
-                  </div>
-                </OverlayView>
-              );
-            })}
+          <MapComponent
+            MapContext={MapContext}
+            resetAnnotations={resetAnnotations}
+            callAnnotationService={callAnnotationService}
+            mapStyle={'retro'}
+          >
+            {showTags &&
+              hoodmapsTags.map((hoodmapTag, index) => {
+                const position = { lat: hoodmapTag.latitude, lng: hoodmapTag.longitude };
+                const fSize = 16 + (40 * hoodmapTag.votes) / 100;
+                return (
+                  <OverlayView position={position} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={`tages_${index}`}>
+                    <div className={'hoodmapsTag'} style={{ fontSize: fSize }}>
+                      {hoodmapTag.tag}
+                    </div>
+                  </OverlayView>
+                );
+              })}
 
-            {(showImages || showSounds) && images.map((mediaFile, index) => {
-              const position = { lat: mediaFile.latitude, lng: mediaFile.longitude };
-              return (
-                <OverlayView position={position} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={`tages_${index}`}>
-                  <div className={'imageTag'}>
-                    {showImages && mediaFile.fileMimeType.indexOf('image/') > -1 && <img src={`${process.env.REACT_APP_SERVER_URL}/images/resized/${mediaFile.filename}`} />}
-                    {showSounds && mediaFile.fileMimeType.indexOf('audio/') > -1 && <FontAwesomeIcon icon={faFileAudio} />}
-                  </div>
-                </OverlayView>
-              );
-            })}
+            {(showImages || showSounds) &&
+              images.map((mediaFile, index) => {
+                const position = { lat: mediaFile.latitude, lng: mediaFile.longitude };
+                return (
+                  <OverlayView position={position} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={`tages_${index}`}>
+                    <div className={'imageTag'}>
+                      {showImages && mediaFile.fileMimeType.indexOf('image/') > -1 && (
+                        <div
+                          onClick={() => {
+                            setMediaDetailedFileIndex(index);
+                          }}
+                        >
+                          <img src={`${process.env.REACT_APP_SERVER_URL}/images/resized/${mediaFile.filename}`} />
+                        </div>
+                      )}
+                      {showSounds && mediaFile.fileMimeType.indexOf('audio/') > -1 && (
+                        <div
+                          onClick={() => {
+                            setMediaDetailedFileIndex(index);
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faFileAudio} />
+                        </div>
+                      )}
+                    </div>
+                  </OverlayView>
+                );
+              })}
           </MapComponent>
         </div>
       </div>
 
-      <div className={`addYours ${leftBtnClass}`} onClick={() => {
-        setMapState({...mapState, openAnnotateOverlay: true});
-      }}>
+      {mediaDetailedFileIndex > -1 && <AnnotationDetail mediaObj={images[mediaDetailedFileIndex]} close={closeDetailsPopup} />}
+
+      <div
+        className={`addYours ${leftBtnClass}`}
+        onClick={() => {
+          setMapState({ ...mapState, openAnnotateOverlay: true });
+        }}
+      >
         <div className={'addYoursText'}>add yours</div>
         <div className={'addYoursCircle'}>
           <FontAwesomeIcon icon={faPlus} />
         </div>
       </div>
 
-      <div className={`closeAddYours ${rightBtnClass}`} onClick={() => {
-        setMapState({...mapState, openAnnotateOverlay: false});
-      }}>
+      <div
+        className={`closeAddYours ${rightBtnClass}`}
+        onClick={() => {
+          setMapState({ ...mapState, openAnnotateOverlay: false });
+        }}
+      >
         <div className={'addYoursText'}>Close</div>
         <div className={'addYoursCircle'}>
           <FontAwesomeIcon icon={faTimes} />
         </div>
       </div>
 
-
-      <div className={`popupContainer ${popOverClass}`}>
+      <div className={`myMapContainer ${popOverClass}`}>
         <AddFileComponent MapContext={MapContext} refreshData={getLocationAnnotation} />
       </div>
     </MainLayout>

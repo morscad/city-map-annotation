@@ -1,0 +1,44 @@
+.popupContainer {
+  font-size: 20px;
+  position: absolute;
+  z-index: 105;
+  background-color: #ffffff;
+  left: 15%;
+  right: 15%;
+  top: 200px;
+  height: 520px;
+  border-radius: 10px;
+  color: #000000;
+  padding: 10px 10px;
+  box-shadow: 5px 5px 5px rgba(75, 75, 75, 0.6);
+  opacity: 0;
+
+  animation: fadeInPopup 0.5s forwards;
+  animation-timing-function: ease-out;
+
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@keyframes fadeInPopup {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.popupInnerContainer {
+  width: calc(100% - 52px);
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.emptyPadding {
+  width: 26px;
+  font-size: 24px;
+}
+.clicker {
+  cursor: pointer;
+  color: #666666;
+  &:hover{
+    color: #f1dd81;
+  }
+}

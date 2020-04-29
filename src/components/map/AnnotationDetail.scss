@@ -1,0 +1,38 @@
+.detailsOuterContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.mediaDetailsContainer {
+  width: 50%;
+  background-color: #FAFAFA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imageDetailsContainer {
+  img {
+    height: 95%;
+    width: 95%;
+    object-fit: cover;
+  }
+}
+.audioDetailsContainer {
+
+}
+
+.contentDetailsContainer {
+  width: calc(50% - 20px);
+  padding-left: 20px;
+}
+
+.captionsBody {
+  background-color: #FAFAFA;
+  height: 400px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.authorBody {
+  margin-top: 20px;
+  font-size: 16px;
+}
