@@ -45,3 +45,22 @@
     }
   }
 }
+
+.hide {
+  opacity: 0;
+}
+.show {
+  opacity: 0;
+  animation: showInstructions 0.5s forwards;
+  animation-timing-function: ease-out;
+  animation-delay: 1s;
+}
+
+@keyframes showInstructions {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

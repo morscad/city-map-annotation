@@ -22,7 +22,7 @@ const SearchBox = ({ MapContext, showEyebrow }) => {
   };
   return (
     <>
-        <div className={'searchEyebrow'}>
+        <div className={`searchEyebrow ${ showEyebrow ? 'flushLeft' : 'tabLeft'}`}>
           Type and address, find an intersection, or look up a name to navigate the neighborhood's annotations
         </div>
       <div className={`controlsContainer ${ showEyebrow ? 'full' : 'threeQuarters'}`}>

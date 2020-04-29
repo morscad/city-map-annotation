@@ -1,18 +1,15 @@
-import React, { useState, useContext } from 'react';
-import { isFunction } from 'lodash';
+import React, { useState, useContext, useEffect } from 'react';
 
 import { OverlayView } from '@react-google-maps/api';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearchPlus, faSearchMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faFileAudio, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import MainLayout from '../layout/MainLayout';
 import './MapContainer.scss';
 import api from '../services/apiService';
-import { Link } from 'react-router-dom';
 import SearchBox from './map/SearchBox';
 import MapComponent from './map/MapComponent';
-import AddYours from "./AddYours";
 import AddFileComponent from "./map/AddFileComponent";
 
 const MapContainer = ({ MapContext }) => {
@@ -22,6 +19,7 @@ const MapContainer = ({ MapContext }) => {
   const [hoodmapsTags, setHoodmapsTags] = useState([]);
   const [images, setImages] = useState([]);
   const [showImages, setShowImages] = useState(true);
+  const [showSounds, setShowSounds] = useState(true);
   const [showTags, setShowTags] = useState(true);
 
   const [popOverClass, setPopOverClass] = useState('');
@@ -51,6 +49,20 @@ const MapContainer = ({ MapContext }) => {
     }
   };
 
+  useEffect(() => {
+    if (mapState.openAnnotateOverlay) {
+      setPopOverClass('popContainerIn');
+      setLeftBtnClass('hideLeftButton');
+      setRightBtnClass('showRightButton');
+    } else {
+      if (popOverClass !== '') {
+        setPopOverClass('popContainerOut');
+        setLeftBtnClass('showLeftButton');
+        setRightBtnClass('hideRightButton');
+      }
+    }
+  }, [mapState.openAnnotateOverlay]);
+
   return (
     <MainLayout>
       <div className={'mapBlockMain'}>
@@ -73,6 +85,13 @@ const MapContainer = ({ MapContext }) => {
                   <span className="checkmark"></span>
               </label>
             </div>
+            <div className={'filtersSelector'}>
+              <label className="checkmarkContainer">
+                Sounds
+                <input type="checkbox" checked={showSounds} onClick={() => { setShowSounds(!showSounds)}}/>
+                <span className="checkmark"></span>
+              </label>
+            </div>
           </div>
         </div>
 
@@ -90,12 +109,13 @@ const MapContainer = ({ MapContext }) => {
               );
             })}
 
-            {showImages && images.map((image, index) => {
-              const position = { lat: image.latitude, lng: image.longitude };
+            {(showImages || showSounds) && images.map((mediaFile, index) => {
+              const position = { lat: mediaFile.latitude, lng: mediaFile.longitude };
               return (
                 <OverlayView position={position} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={`tages_${index}`}>
                   <div className={'imageTag'}>
-                    <img src={`${process.env.REACT_APP_SERVER_URL}/images/resized/${image.filename}`} />
+                    {showImages && mediaFile.fileMimeType.indexOf('image/') > -1 && <img src={`${process.env.REACT_APP_SERVER_URL}/images/resized/${mediaFile.filename}`} />}
+                    {showSounds && mediaFile.fileMimeType.indexOf('audio/') > -1 && <FontAwesomeIcon icon={faFileAudio} />}
                   </div>
                 </OverlayView>
               );
@@ -105,9 +125,6 @@ const MapContainer = ({ MapContext }) => {
       </div>
 
       <div className={`addYours ${leftBtnClass}`} onClick={() => {
-        setPopOverClass('popContainerIn');
-        setLeftBtnClass('hideLeftButton');
-        setRightBtnClass('showRightButton');
         setMapState({...mapState, openAnnotateOverlay: true});
       }}>
         <div className={'addYoursText'}>add yours</div>
@@ -117,9 +134,6 @@ const MapContainer = ({ MapContext }) => {
       </div>
 
       <div className={`closeAddYours ${rightBtnClass}`} onClick={() => {
-        setPopOverClass('popContainerOut');
-        setLeftBtnClass('showLeftButton');
-        setRightBtnClass('hideRightButton');
         setMapState({...mapState, openAnnotateOverlay: false});
       }}>
         <div className={'addYoursText'}>Close</div>
@@ -130,7 +144,7 @@ const MapContainer = ({ MapContext }) => {
 
 
       <div className={`popupContainer ${popOverClass}`}>
-        <AddFileComponent MapContext={MapContext} />
+        <AddFileComponent MapContext={MapContext} refreshData={getLocationAnnotation} />
       </div>
     </MainLayout>
   );

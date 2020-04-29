@@ -176,7 +176,10 @@
 }
 
 .imageTag {
-
+  font-size: 32px;
+  &:hover {
+    color: #FFFFFF;
+  }
   img {
     width: 40px;
     height: auto;

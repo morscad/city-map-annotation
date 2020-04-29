@@ -1,0 +1,136 @@
+.dialogueContainer {
+  font-size: 20px;
+  position: absolute;
+  z-index: 105;
+  background-color: #ffffff;
+  left: 15%;
+  right: 15%;
+  top: 200px;
+  height: 520px;
+  border-radius: 10px;
+  color: #000000;
+  padding: 10px 10px;
+  box-shadow: 5px 5px 5px rgba(75, 75, 75, 0.6);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.emptyPadding {
+  width: 26px;
+  font-size: 24px;
+}
+.dialogueInnerContainer {
+  width: calc(100% - 52px);
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.tabSelector {
+  display: flex;
+  flex-direction: row;
+}
+.tab {
+  width: 50%;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 0;
+}
+.tabSelected {
+  background-color: #f1dd81;
+  cursor: default;
+}
+
+.tabUnSelected {
+  background-color: #f4f4f4;
+  cursor: pointer;
+}
+
+.panelBody {
+  border-radius: 0 0 5px 5px;
+  border: 2px solid #f1dd81;
+  padding: 20px 40px;
+  height: 360px;
+
+  .errorContainer {
+    height: 40px;
+    margin-bottom: 10px;
+    .error {
+      background-color: brown;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 8px 0;
+      border-radius: 5px;
+    }
+  }
+  .panelBodyContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .captions {
+      width: calc(90% - 320px);
+
+      .title {
+        font-weight: 700;
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      .operations {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+
+        .operationsBtn {
+          @extend %btn;
+          margin-right: 40px;
+        }
+      }
+
+      textarea {
+        width: 320px;
+        height: 160px;
+        border: 1px solid #f1dd81;
+      }
+
+      input {
+        margin-top: 20px;
+        width: 320px;
+        height: 20px;
+        border: 1px solid #f1dd81;
+      }
+    }
+
+    .file {
+      width: 310px;
+      height: 310px;
+      border: 2px dashed #f1dd81;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 300px;
+        height: auto;
+      }
+
+      .selectorBtn {
+        @extend %btn;
+      }
+    }
+  }
+}
+%btn {
+  width: 140px;
+  height: 32px;
+  padding-top: 8px;
+  color: #ffffff;
+  background-color: #f1dd81;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d3c16f;
+  }
+}

@@ -2,16 +2,27 @@ import React, { useContext, useState, useEffect } from 'react';
 import './MapComponent.scss';
 import { GoogleMap } from '@react-google-maps/api';
 import { isFunction } from 'lodash';
-import retroMapStyle from '../../mapStyle/retroMapStyle'
-import silverMapStyle from '../../mapStyle/silverMapStyle'
+import retroMapStyle from '../../mapStyle/retroMapStyle';
+import silverMapStyle from '../../mapStyle/silverMapStyle';
 
-const MapComponent = ({ MapContext, children, mapStyle, resetAnnotations, callAnnotationService, handleAnnotationPointSelect  }) => {
+const MapComponent = ({
+  MapContext,
+  children,
+  mapStyle,
+  resetAnnotations,
+  callAnnotationService,
+  handleAnnotationPointSelect,
+}) => {
   const [mapState, setMapState] = useContext(MapContext);
   const [map, setMap] = useState();
 
   const onMapBoundsChanged = (force = false) => {
     if (map && isFunction(map.getCenter)) {
-      if (force || (!force && (map.getCenter().lng() !== mapState.lng || map.getCenter().lat() !== mapState.lat || map.getZoom() !== mapState.zoom))) {
+      if (
+        force ||
+        (!force &&
+          (map.getCenter().lng() !== mapState.lng || map.getCenter().lat() !== mapState.lat || map.getZoom() !== mapState.zoom))
+      ) {
         const { Ua, Ya } = map.getBounds();
         setMapState({
           ...mapState,
@@ -19,6 +30,8 @@ const MapComponent = ({ MapContext, children, mapStyle, resetAnnotations, callAn
           minLat: Ya.i,
           maxLng: Ua.j,
           maxLat: Ya.j,
+          lng: map.getCenter().lng(),
+          lat: map.getCenter().lat(),
         });
         if (callAnnotationService) {
           callAnnotationService();
@@ -31,7 +44,7 @@ const MapComponent = ({ MapContext, children, mapStyle, resetAnnotations, callAn
     <GoogleMap
       zoom={mapState.zoom}
       options={{
-          styles: mapStyle === 'retro' ? retroMapStyle : silverMapStyle,
+        styles: mapStyle === 'retro' ? retroMapStyle : silverMapStyle,
       }}
       center={{
         lat: mapState.lat,
@@ -48,9 +61,9 @@ const MapComponent = ({ MapContext, children, mapStyle, resetAnnotations, callAn
         setMap(m);
       }}
       onDragStart={() => {
-          if (resetAnnotations) {
-              resetAnnotations();
-          }
+        if (resetAnnotations) {
+          resetAnnotations();
+        }
       }}
       onDragEnd={onMapBoundsChanged}
       onZoomChanged={() => {
