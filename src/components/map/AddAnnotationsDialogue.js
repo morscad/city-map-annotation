@@ -1,18 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './AddAnnotationsDialogue.scss';
 import api from '../../services/apiService';
-import { faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PopupLayout from '../../layout/PopupLayout';
 
-const AddAnnotationsDialogue = ({ context, clickLocation, close }) => {
-  const [mapState, setMapState] = useContext(context);
+const AddAnnotationsDialogue = ({ clickLocation, close }) => {
 
   const [selectedTab, setSelectedTab] = useState('images');
   const [uploadRef, setUploadRef] = useState();
   const [file, setFile] = useState();
   const [mediaPreviewFile, setMediaPreviewFile] = useState();
+  const [title, setTitle] = useState('');
   const [captions, setCaptions] = useState('');
   const [authorName, setAuthorName] = useState('');
   const [error, setError] = useState('');
@@ -37,13 +35,19 @@ const AddAnnotationsDialogue = ({ context, clickLocation, close }) => {
 
   const clearFile = () => {
     setError('');
+    setTitle('');
     setCaptions('');
     setAuthorName('');
     setMediaPreviewFile(null);
     setFile(null);
   };
   const uploadFile = async () => {
+    if (title === '') {
+      setError('Please enter a title for this media');
+      return;
+    }
     const data = new FormData();
+    data.append('title', title);
     data.append('captions', captions);
     data.append('authorName', authorName !== '' ? authorName : 'Anonymous');
     data.append('type', selectedTab);
@@ -144,7 +148,17 @@ const AddAnnotationsDialogue = ({ context, clickLocation, close }) => {
                 <>
                   <div className={'title'}>Enter Captions</div>
                   <div>
+                    <input
+                        placeholder={'Media Title'}
+                        value={title}
+                        onChange={(e) => {
+                          setTitle(e.target.value);
+                        }}
+                    />
+                  </div>
+                  <div>
                     <textarea
+                        placeholder={'Description or captions'}
                       maxlength={512}
                       onChange={(e) => {
                         setCaptions(e.target.value);
@@ -186,7 +200,7 @@ const AddAnnotationsDialogue = ({ context, clickLocation, close }) => {
                   Select File
                 </div>
               )}
-              {!!file && !!mediaPreviewFile && selectedTab === 'images' && <img src={mediaPreviewFile.src} />}
+              {!!file && !!mediaPreviewFile && selectedTab === 'images' && <img src={mediaPreviewFile.src} alt={'preview'}/>}
               {!!file && !!mediaPreviewFile && selectedTab === 'sounds' && (
                 <audio controls>
                   <source src={mediaPreviewFile.src} type={mediaPreviewFile.type} />

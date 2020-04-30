@@ -11,7 +11,7 @@ const AnnotationDetail = ({ close, mediaObj }) => {
         <div className={'mediaDetailsContainer'}>
           {mediaObj.type === 'images' && (
             <div className={'imageDetailsContainer'}>
-              <img src={`${process.env.REACT_APP_SERVER_URL}/images/original/${mediaObj.filename}`} />
+              <img src={`${process.env.REACT_APP_SERVER_URL}/images/original/${mediaObj.filename}`} alt={mediaObj.title} />
             </div>
           )}
           {mediaObj.type === 'sounds' && (
@@ -26,6 +26,7 @@ const AnnotationDetail = ({ close, mediaObj }) => {
           )}
         </div>
         <div className={'contentDetailsContainer'}>
+          <div className={'captionsTitle'}>{mediaObj.title}</div>
           <div className={'captionsBody'}>{mediaObj.captions}</div>
           <div className={'authorBody'}>
             Published by {mediaObj.authorName} on {moment(mediaObj.uploadedOn).format('MMMM Do YYYY, h:mm:ss a')}

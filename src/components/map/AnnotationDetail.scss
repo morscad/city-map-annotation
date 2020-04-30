@@ -5,10 +5,11 @@
 }
 .mediaDetailsContainer {
   width: 50%;
-  background-color: #FAFAFA;
+  background-image: linear-gradient(#F2F2F2, #FAFAFA);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
 }
 .imageDetailsContainer {
   img {
@@ -26,11 +27,17 @@
   padding-left: 20px;
 }
 
-.captionsBody {
-  background-color: #FAFAFA;
-  height: 400px;
+.captionsTitle {
+  background-color: #F2F2F2;
   padding: 10px;
-  border-radius: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px 5px 0 0;
+}
+.captionsBody {
+  background-image: linear-gradient(#F2F2F2, #FAFAFA);
+  height: 340px;
+  padding: 10px;
+  border-radius: 0 0 5px 5px;
 }
 .authorBody {
   margin-top: 20px;

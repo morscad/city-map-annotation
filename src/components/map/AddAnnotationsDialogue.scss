@@ -45,31 +45,32 @@
       .title {
         font-weight: 700;
         font-size: 20px;
-        margin-bottom: 20px;
       }
 
       .operations {
-        margin-top: 20px;
         display: flex;
         flex-direction: row;
 
         .operationsBtn {
           @extend %btn;
-          margin-right: 40px;
+          margin-right: 50px;
         }
       }
 
       textarea {
         width: 320px;
-        height: 160px;
+        height: 140px;
+        padding: 5px;
         border: 1px solid #f1dd81;
+        font-size: 12px;
       }
 
       input {
-        margin-top: 20px;
+        margin: 10px 0 10px;
         width: 320px;
-        height: 20px;
         border: 1px solid #f1dd81;
+        padding: 5px;
+        font-size: 12px;
       }
     }
 

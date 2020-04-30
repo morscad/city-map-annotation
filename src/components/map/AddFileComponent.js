@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 
 import SearchBox from './SearchBox';
 import MapComponent from './MapComponent';
-import api from '../../services/apiService';
 import './AddFileComponent.scss';
 import MapInstuctions from './MapInstuctions';
 import AddAnnotationsDialogue from "./AddAnnotationsDialogue";
@@ -21,10 +20,6 @@ const AddFileComponent = ({ MapContext, refreshData }) => {
     setSelectedClick({ lat: lat, lng: lng });
     setShowUploadPopup(1);
   };
-
-  const closeAnnotationPopup = () => {
-    setShowUploadPopup(0);
-  }
 
   // ------ Instructions function
 

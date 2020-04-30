@@ -152,7 +152,7 @@ const MapContainer = ({ MapContext }) => {
                             setMediaDetailedFileIndex(index);
                           }}
                         >
-                          <img src={`${process.env.REACT_APP_SERVER_URL}/images/resized/${mediaFile.filename}`} />
+                          <img src={`${process.env.REACT_APP_SERVER_URL}/images/resized/${mediaFile.filename}`} alt={mediaFile.title} />
                         </div>
                       )}
                       {showSounds && mediaFile.fileMimeType.indexOf('audio/') > -1 && (

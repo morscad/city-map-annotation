@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import './MapComponent.scss';
 import { GoogleMap } from '@react-google-maps/api';
 import { isFunction } from 'lodash';

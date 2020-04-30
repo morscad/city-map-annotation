@@ -1,11 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import MainLayout from '../layout/MainLayout';
 import './AddYours.scss';
 
-import SearchBox from './map/SearchBox';
-import MapComponent from './map/MapComponent';
-import api from '../services/apiService';
 import AddFileComponent from './map/AddFileComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward } from '@fortawesome/free-solid-svg-icons';
