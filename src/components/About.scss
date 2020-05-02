@@ -1,15 +1,29 @@
+@import '../vars';
+
+@media (max-width: $md * 1px) {
+
+}
+@media (min-width: $md * 1px) {
+  .contentContainer {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .buttonContainer {
+    max-width: 960px;
+  }
+}
 .videoContainer {
   margin: 0 auto;
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .contentContainer {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding-top: 10px;
+  width: calc(100% - 20px);
+  padding: 10px;
   font-size: 18px;
   font-weight: 400;
+  text-align: justify;
 
   > div {
     margin: 20px 0;
@@ -17,10 +31,10 @@
 }
 
 .buttonContainer {
-  width: 100%;
-  max-width: 960px;
+  width: calc(100% - 20px);
   margin: 20px auto;
 }
+
 .button {
   margin: 0 auto;
   width: 300px;

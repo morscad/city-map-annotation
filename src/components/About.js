@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 
 import MainLayout from '../layout/MainLayout';
@@ -6,17 +6,39 @@ import './About.scss';
 
 const About = () => {
   const [allowReroute, setAllowReroute] = useState(false);
+  const [playerDimensions, setPlayerDimensions] = useState({width: 0, height: 0});
+  const updateDimensions = () => {
+    let w = 0;
+    let h = 0;
+    if(window.innerWidth > 1200) {
+      w = 1200
+    } else {
+      w = window.innerWidth;
+    }
+    h = w * 1080 / 1920;
+    setPlayerDimensions({width: w, height: h});
+  };
+  useEffect( () => {
+    window.addEventListener("resize", updateDimensions);
+    if (playerDimensions.width === 0) {
+      updateDimensions();
+    }
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    }
+  }, [window])
   return (
     <MainLayout>
       {allowReroute && <Redirect to="/map" />}
       <div className={'videoContainer'}>
         <iframe
           src="https://player.vimeo.com/video/413972673"
-          width="1200"
-          height="675"
+          width={playerDimensions.width}
+          height={playerDimensions.height}
           frameBorder="0"
           allow="autoplay; fullscreen"
           allowFullScreen
+          title={'Introduction Video'}
         ></iframe>
       </div>
       <div className={'buttonContainer'}>
