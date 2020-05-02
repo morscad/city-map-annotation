@@ -26,7 +26,7 @@ function CityMapMain() {
               </div>
             </div>
             <div className={'link'}>
-              <Link to={'/map'}>enter &raquo;</Link>
+              <Link to={'/about'}>enter &raquo;</Link>
             </div>
           </div>
           <div className={'logoFooter'}>A New York University Research Project</div>
