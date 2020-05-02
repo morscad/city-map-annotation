@@ -1,0 +1,40 @@
+.videoContainer {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.contentContainer {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: 10px;
+  font-size: 18px;
+  font-weight: 400;
+
+  > div {
+    margin: 20px 0;
+  }
+}
+
+.buttonContainer {
+  width: 100%;
+  max-width: 960px;
+  margin: 20px auto;
+}
+.button {
+  margin: 0 auto;
+  width: 300px;
+  height: 36px;
+  padding-top: 8px;
+  color: #ffffff;
+  background-color: #f1dd81;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 20px;
+
+  &:hover {
+    background-color: #d3c16f;
+  }
+}
