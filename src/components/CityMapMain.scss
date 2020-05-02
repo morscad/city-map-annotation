@@ -1,85 +1,163 @@
-$logoWidth: 392;
-$logoHeight: 440;
-$enterWidth: 100;
+@import '../vars';
 
-.mainContainer {
+@media (max-width: $md * 1px) {
+  .homepageLogoContainer {
+    width: ($logoWidthMobile + $enterWidthMobile) * 1px;
+    margin-left: calc(50% - #{(($logoWidthMobile + $enterWidthMobile)/2) * 1px});
+    margin-top: 120px;
+  }
+  .link {
+    margin-top: 270px;
+    margin-left: $enterLeftMobile * 1px;
+    a {
+      font-size: 20px;
+    }
+  }
+  .logo {
+    width: $logoWidthMobile * 1px;
+    & :nth-child(1) {
+      width: ($logoWidthMobile/2) * 1px;
+      height: $logoHeightMobile * 1px;
+      .motionContainer {
+        left: ($logoWidthMobile/2) * 1px;
+      }
+      &img {
+      }
+    }
+    & :nth-child(2) {
+      width: ($logoWidthMobile/2) * 1px;
+      height: $logoHeightMobile * 1px;
+      .motionContainer {
+        left: ($logoWidthMobile/2) * -1px;
+      }
+    }
+  }
+  @keyframes leftIntroMotion {
+    from {
+      left: ($logoWidthMobile/2) * 1px;
+    }
+    to {
+      left: 0px;
+    }
+  }
+
+  @keyframes rightIntroMotion {
+    from {
+      left: ($logoWidthMobile/2) * -1px;
+    }
+    to {
+      left: 0px;
+    }
+  }
 }
 
-.homepageLogoContainer {
-  width: ($logoWidth + $enterWidth)* 1px;
-  margin-left: calc(50% - #{($logoWidth/2) * 1px});
-  margin-top: 120px;
+@media (min-width: $md * 1px) {
+  .homepageLogoContainer {
+    width: ($logoWidth + $enterWidth) * 1px;
+    margin-left: calc(50% - #{($logoWidth/2) * 1px});
+    margin-top: 120px;
+  }
+  .link {
+    margin-top: 405px;
+    margin-left: $enterLeft * 1px;
+    a {
+      font-size: 24px;
+    }
+  }
+
+  .logo {
+    width: $logoWidth * 1px;
+    & :nth-child(1) {
+      width: ($logoWidth/2) * 1px;
+      height: $logoHeight * 1px;
+      .motionContainer {
+        left: ($logoWidth/2) * 1px;
+      }
+      &img {
+      }
+    }
+    & :nth-child(2) {
+      width: ($logoWidth/2) * 1px;
+      height: $logoHeight * 1px;
+      .motionContainer {
+        left: ($logoWidth/2) * -1px;
+      }
+    }
+  }
+  @keyframes leftIntroMotion {
+    from {
+      left: ($logoWidth/2) * 1px;
+    }
+    to {
+      left: 0px;
+    }
+  }
+
+  @keyframes rightIntroMotion {
+    from {
+      left: ($logoWidth/2) * -1px;
+    }
+    to {
+      left: 0px;
+    }
+  }
+}
+
+.mainContainer {
 }
 
 .homepageLogo {
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+}
 
-  .logo {
-    display: flex;
-    flex-direction: row;
-    width: 392px;
-    & :nth-child(1) {
-      width: ($logoWidth/2) * 1px;
-      height: $logoHeight * 1px;
-      overflow: hidden;
-      .motionContainer {
-        position: relative;
-        left: ($logoWidth/2) * 1px;
-        animation: leftIntroMotion 0.5s forwards;
-        animation-timing-function: ease-out;
-        animation-delay: 0.25s;
-      }
-      &img {
+.link {
+  opacity: 0;
+  animation: textOpacity 0.5s forwards;
+  animation-delay: 1s;
+  animation-timing-function: ease-out;
+  a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+  }
+}
 
-      }
+.logo {
+  display: flex;
+  flex-direction: row;
+  & :nth-child(1) {
+    overflow: hidden;
+    .motionContainer {
+      position: relative;
+      animation: leftIntroMotion 0.5s forwards;
+      animation-timing-function: ease-out;
+      animation-delay: 0.25s;
     }
-    & :nth-child(2) {
-      width: ($logoWidth/2) * 1px;
-      height: $logoHeight * 1px;
-      overflow: hidden;
-      .motionContainer {
-        position: relative;
-        left: ($logoWidth/2) * -1px;
-        animation: rightIntroMotion 0.5s forwards;
-        animation-delay: 0.5s;
-        animation-timing-function: ease-out;
-      }
+    &img {
     }
-
   }
-
-  @keyframes leftIntroMotion {
-    from {left: ($logoWidth/2) * 1px;}
-    to {left: 0px;}
-  }
-
-  @keyframes rightIntroMotion {
-    from {left: ($logoWidth/2) * -1px;}
-    to {left: 0px;}
-  }
-  @keyframes textOpacity {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-
-  .link {
-    margin-top: 406px;
-    margin-left: 28px;
-    opacity: 0;
-    animation: textOpacity 0.5s forwards;
-    animation-delay: 1s;
-    animation-timing-function: ease-out;
-    a {
-      text-decoration: none;
-      color: #000000;
-      font-size: 24px;
-      font-weight: 500;
+  & :nth-child(2) {
+    overflow: hidden;
+    .motionContainer {
+      position: relative;
+      animation: rightIntroMotion 0.5s forwards;
+      animation-delay: 0.5s;
+      animation-timing-function: ease-out;
     }
   }
 }
+
+@keyframes textOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .logoFooter {
   text-align: right;
   font-size: 18px;

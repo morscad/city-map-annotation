@@ -15,7 +15,7 @@ function CityMapMain() {
           <div className={'homepageLogo'}>
             <div className={'logo'}>
               <div>
-                <div class={'motionContainer'}>
+                <div className={'motionContainer'}>
                   <img src={homepageLogoLeft} alt={'Caity Data Stories Home Page'} />
                 </div>
               </div>
