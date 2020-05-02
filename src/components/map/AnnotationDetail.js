@@ -28,8 +28,11 @@ const AnnotationDetail = ({ close, mediaObj }) => {
         <div className={'contentDetailsContainer'}>
           <div className={'captionsTitle'}>{mediaObj.title}</div>
           <div className={'captionsBody'}>{mediaObj.captions}</div>
-          <div className={'authorBody'}>
-            Published by {mediaObj.authorName} on {moment(mediaObj.uploadedOn).format('MMMM Do YYYY, h:mm:ss a')}
+          <div className={'authorNameContainer'}>
+            <div className={'authorBody'}>
+              Published by {mediaObj.authorName} on {moment(mediaObj.uploadedOn).format('MMMM Do YYYY, h:mm')}
+            </div>
+            <div className={'reportThisImage'} onClick={close}>Report</div>
           </div>
         </div>
       </div>

@@ -12,10 +12,11 @@
   border-radius: 5px;
 }
 .imageDetailsContainer {
+  height: 370px;
   img {
-    height: 95%;
-    width: 95%;
-    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
   }
 }
 .audioDetailsContainer {
@@ -39,7 +40,18 @@
   padding: 10px;
   border-radius: 0 0 5px 5px;
 }
+
+.authorNameContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .authorBody {
   margin-top: 20px;
   font-size: 16px;
+}
+.reportThisImage {
+  color: #a52a2a;
+  margin-top: 20px;
+  cursor: pointer;
 }
