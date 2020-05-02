@@ -44,6 +44,11 @@ const AddFileComponent = ({ MapContext, refreshData }) => {
     refreshData();
   }
 
+  const closeAnnotationsPopup = () => {
+    console.log("CLOSE");
+    setShowUploadPopup(0);
+  }
+
   useEffect(() => {
     let showInst = 0;
     if (localStorage) {
@@ -78,7 +83,7 @@ const AddFileComponent = ({ MapContext, refreshData }) => {
           />
         )}
         {showUploadPopup === 1 && (
-            <AddAnnotationsDialogue context={MapContext} clickLocation={selectedClick} close={closeAnnotationsDialogue}/>
+            <AddAnnotationsDialogue context={MapContext} clickLocation={selectedClick} closePopup={closeAnnotationsPopup} close={closeAnnotationsDialogue}/>
         )}
         <SearchBox MapContext={MapContext} showEyebrow={false} />
         <div className={'shortInstructions'}>

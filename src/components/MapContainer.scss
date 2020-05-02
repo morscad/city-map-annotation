@@ -1,3 +1,129 @@
+@import '../vars';
+
+@media (max-width: $md * 1px) {
+  .filtersTitle {
+    font-size: 18px;
+    margin-right: 40px;
+  }
+  .filtersSelector {
+    margin-right: 16px;
+  }
+  .checkmarkContainer {
+    padding-left: 24px;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+  .checkmark {
+    height: 18px;
+    width: 18px;
+  }
+  .checkmarkContainer .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+  }
+  .addYours {
+    border-radius: 20px;
+    top: 5px;
+    left: calc(50% - 75px);
+  }
+
+  .closeAddYours {
+    border-radius: 20px;
+    top: 5px;
+    left: calc(50% - 75px);
+  }
+  .initLeftButton {
+    visibility: visible;
+  }
+  .hideLeftButton {
+    visibility: hidden;
+  }
+  .showLeftButton {
+    visibility: visible;
+  }
+  .initRightButton {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .hideRightButton {
+    visibility: hidden;
+  }
+  .showRightButton {
+    visibility: visible;
+  }
+  .myMapContainer {
+    top: 60px;
+  }
+}
+
+@media (min-width: $md * 1px) {
+  .filtersTitle {
+    font-size: 22px;
+    margin-right: 40px;
+  }
+  .filtersSelector {
+    margin-right: 20px;
+  }
+  .checkmarkContainer {
+    padding-left: 35px;
+    margin-bottom: 12px;
+    font-size: 22px;
+  }
+  .checkmark {
+    height: 25px;
+    width: 25px;
+  }
+  .checkmarkContainer .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+  }
+
+  .addYours {
+    border-radius: 20px 0 0 20px;
+    top: 190px;
+  }
+
+  .closeAddYours {
+    border-radius: 0 20px 20px 0;
+    top: 135px;
+  }
+  .initLeftButton {
+    right: -1px;
+  }
+  .hideLeftButton {
+    right: -1px;
+    animation: hideLeftBtnAnim 0.5s forwards;
+    animation-timing-function: ease-out;
+  }
+  .showLeftButton {
+    right: -140px;
+    animation: showLeftBtnAnim 0.5s forwards;
+    animation-timing-function: ease-in;
+    animation-delay: 0.5s;
+  }
+  .initRightButton {
+    left: -140px;
+  }
+  .hideRightButton {
+    left: -1px;
+    animation: hideRightBtnAnim 0.5s forwards;
+    animation-timing-function: ease-in;
+  }
+  .showRightButton {
+    left: -140px;
+    animation: showRightBtnAnim 0.5s forwards;
+    animation-timing-function: ease-in;
+    animation-delay: 0.5s;
+  }
+  .myMapContainer {
+    top: 84px;
+  }
+}
+
 .mapBlockMain {
   width: 100%;
   min-height: 750px;
@@ -46,21 +172,12 @@
   padding-top: 10px;
 }
 
-.filtersTitle {
-  font-size: 22px;
-  margin-right: 40px;
-}
-.filtersSelector {
-  margin-right: 20px;
-}
+
 
 .checkmarkContainer {
   display: block;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
   cursor: pointer;
-  font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -81,8 +198,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
   background-color: #FFFFFF;
 }
 
@@ -110,10 +225,6 @@
 
 /* Style the checkmark/indicator */
 .checkmarkContainer .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
   border: solid white;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
@@ -194,7 +305,6 @@
 
 .myMapContainer {
   position: absolute;
-  top: 104px;
   left: 100vw;
   width: 100vw;
   height: calc(100vh - 100px);
@@ -204,36 +314,29 @@
 
 .addYours {
   @extend %add;
-  border-radius: 20px 0 0 20px;
-
   position: absolute;
-  top: 210px;
   z-index: 110;
-
 }
 
 .closeAddYours {
   @extend %add;
-  border-radius: 0 20px 20px 0;
-
   position: absolute;
-  top: 155px;
-
   z-index: 120;
 }
+
 
 .popContainerIn {
   animation: slideIn 0.5s forwards;
   animation-timing-function: ease-out;
 }
-@keyframes slideIn {
-  from {left: 100vw;}
-  to {left: 0px;}
-}
-
 .popContainerOut {
   animation: slideOut 0.5s forwards;
   animation-timing-function: ease-in;
+}
+
+@keyframes slideIn {
+  from {left: 100vw;}
+  to {left: 0px;}
 }
 @keyframes slideOut {
   from {left: 0px;}
@@ -241,49 +344,23 @@
 }
 
 
-.initLeftButton {
-  right: -1px;
-}
-.hideLeftButton {
-  right: -1px;
-  animation: hideLeftBtnAnim 0.5s forwards;
-  animation-timing-function: ease-out;
-}
+
 @keyframes hideLeftBtnAnim {
   from {right: -1px;}
   to {right: -140px;}
-}
-.showLeftButton {
-  right: -140px;
-  animation: showLeftBtnAnim 0.5s forwards;
-  animation-timing-function: ease-in;
-  animation-delay: 0.5s;
 }
 @keyframes showLeftBtnAnim {
   from {right: -140px;}
   to {right: -1px;}
 }
 
-
-.initRightButton {
-  left: -140px;
-}
-.hideRightButton {
-  left: -1px;
-  animation: hideRightBtnAnim 0.5s forwards;
-  animation-timing-function: ease-in;
-}
 @keyframes hideRightBtnAnim {
   from {left: -1px;}
   to {left: -140px;}
 }
-.showRightButton {
-  left: -140px;
-  animation: showRightBtnAnim 0.5s forwards;
-  animation-timing-function: ease-in;
-  animation-delay: 0.5s;
-}
+
 @keyframes showRightBtnAnim {
   from {left: -140px;}
   to {left: -1px;}
 }
+

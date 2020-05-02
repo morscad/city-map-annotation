@@ -1,3 +1,114 @@
+@import '../../vars';
+
+@media (max-width: $md * 1px) {
+  .panelBody {
+    padding: 10px;
+
+    .errorContainer {
+      height: auto;
+      margin-bottom: 10px;
+
+      .error {
+        padding: 8px 0;
+        border-radius: 5px;
+      }
+    }
+  }
+  .panelBodyContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .file {
+    width: 100%;
+    height: 100vw;
+
+    .selectorBtn {
+      width: 90%;
+      height: 30px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .captions {
+    width: 100%;
+    .operations {
+      display: flex;
+      flex-direction: column;
+
+      .operationsBtn {
+        margin-right: 50px;
+        margin-bottom: 10px;
+        width: 100%;
+        height: 32px;
+      }
+    }
+    textarea {
+      width: calc(100% - 10px);
+      height: 140px;
+    }
+    input {
+      width: calc(100% - 10px);
+    }
+  }
+}
+
+@media (min-width: $md * 1px) {
+  .panelBody {
+    padding: 20px 40px;
+    height: 360px;
+
+    .errorContainer {
+      height: 40px;
+      margin-bottom: 10px;
+
+      .error {
+        padding: 8px 0;
+        border-radius: 5px;
+      }
+    }
+  }
+  .panelBodyContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .file {
+    width: 310px;
+    height: 310px;
+    .selectorBtn {
+      width: 140px;
+      height: 30px;
+    }
+    img {
+      width: 300px;
+      height: auto;
+    }
+  }
+  .captions {
+    width: calc(90% - 320px);
+    .operations {
+      display: flex;
+      flex-direction: row;
+
+      .operationsBtn {
+        margin-right: 50px;
+        width: 140px;
+        height: 32px;
+      }
+    }
+    textarea {
+      width: 320px;
+      height: 140px;
+    }
+    input {
+      width: 320px;
+    }
+  }
+
+}
+
 .tabSelector {
   display: flex;
   flex-direction: row;
@@ -21,82 +132,61 @@
 .panelBody {
   border-radius: 0 0 5px 5px;
   border: 2px solid #f1dd81;
-  padding: 20px 40px;
-  height: 360px;
+}
 
-  .errorContainer {
-    height: 40px;
-    margin-bottom: 10px;
-    .error {
-      background-color: brown;
-      color: #FFFFFF;
-      text-align: center;
-      padding: 8px 0;
-      border-radius: 5px;
-    }
-  }
-  .panelBodyContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .captions {
-      width: calc(90% - 320px);
-
-      .title {
-        font-weight: 700;
-        font-size: 20px;
-      }
-
-      .operations {
-        display: flex;
-        flex-direction: row;
-
-        .operationsBtn {
-          @extend %btn;
-          margin-right: 50px;
-        }
-      }
-
-      textarea {
-        width: 320px;
-        height: 140px;
-        padding: 5px;
-        border: 1px solid #f1dd81;
-        font-size: 12px;
-      }
-
-      input {
-        margin: 10px 0 10px;
-        width: 320px;
-        border: 1px solid #f1dd81;
-        padding: 5px;
-        font-size: 12px;
-      }
-    }
-
-    .file {
-      width: 310px;
-      height: 310px;
-      border: 2px dashed #f1dd81;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      img {
-        width: 300px;
-        height: auto;
-      }
-
-      .selectorBtn {
-        @extend %btn;
-      }
-    }
+.errorContainer {
+  .error {
+    background-color: brown;
+    color: #FFFFFF;
+    text-align: center;
   }
 }
+
+.file {
+  border: 2px dashed #f1dd81;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 300px;
+    height: auto;
+  }
+
+  .selectorBtn {
+    @extend %btn;
+  }
+}
+.captions {
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .operations {
+    .operationsBtn {
+      @extend %btn;
+    }
+  }
+
+  textarea {
+    padding: 5px;
+    border: 1px solid #f1dd81;
+    font-size: 12px;
+  }
+
+  input {
+    margin: 10px 0 10px;
+    border: 1px solid #f1dd81;
+    padding: 5px;
+    font-size: 12px;
+  }
+}
+
+
+
 %btn {
-  width: 140px;
-  height: 32px;
   padding-top: 8px;
   color: #ffffff;
   background-color: #f1dd81;

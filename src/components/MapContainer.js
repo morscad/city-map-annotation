@@ -174,6 +174,7 @@ const MapContainer = ({ MapContext }) => {
 
       {mediaDetailedFileIndex > -1 && <AnnotationDetail mediaObj={images[mediaDetailedFileIndex]} close={closeDetailsPopup} />}
 
+      { /* ----- DESKTOP VIEW -----  */}
       <div
         className={`addYours ${leftBtnClass}`}
         onClick={() => {

@@ -1,34 +1,78 @@
-.searchEyebrow {
-  font-size: 18px;
-  padding-top: 20px;
-}
-.flushLeft {
-  margin-left: 20px;
-}
-.tabLeft {
-  margin-left: calc(15% + 10px);
+@import '../../vars';
+
+@media (max-width: $md * 1px) {
+  .searchEyebrow {
+    font-size: 16px;
+    padding-top: 10px;
+  }
+
+  .flushLeft {
+    margin-left: 10px;
+    width: calc(100% - 20px);
+  }
+  .tabLeft {
+    margin-left: 10px;
+    width: calc(100% - 20px);
+  }
+  .controlsContainer {
+    margin-left: 10px;
+  }
+  .full {
+    input {
+      width: calc(100% - 20px);
+    }
+  }
+
+  .threeQuarters {
+    input {
+      width: calc(100% - 20px);
+    }
+  }
+
 }
 
+@media (min-width: $md * 1px) {
+  .searchEyebrow {
+    font-size: 18px;
+    padding-top: 20px;
+  }
+
+  .flushLeft {
+    margin-left: 20px;
+    width: calc(100% - 40px);
+  }
+  .tabLeft {
+    margin-left: calc(15% + 10px);
+  }
+  .controlsContainer {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .full {
+    input {
+      width: calc(100% - 10px);
+    }
+  }
+
+  .threeQuarters {
+    input {
+      margin-right: 20px;
+      width: calc(85% - 20px);
+      float: right;
+    }
+  }
+}
+
+
+
+
 .controlsContainer {
-  margin-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
 }
-.full {
-  input {
-    width: calc(100% - 40px);
-  }
-}
 
-.threeQuarters {
-  input {
-    margin-right: 20px;
-    width: calc(85% - 20px);
-    float: right;
-  }
-}
 .searchInput {
   width: 100%;
   input {

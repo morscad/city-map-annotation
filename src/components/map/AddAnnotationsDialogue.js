@@ -4,7 +4,7 @@ import './AddAnnotationsDialogue.scss';
 import api from '../../services/apiService';
 import PopupLayout from '../../layout/PopupLayout';
 
-const AddAnnotationsDialogue = ({ clickLocation, close }) => {
+const AddAnnotationsDialogue = ({ clickLocation, close, closePopup }) => {
 
   const [selectedTab, setSelectedTab] = useState('images');
   const [uploadRef, setUploadRef] = useState();
@@ -104,7 +104,7 @@ const AddAnnotationsDialogue = ({ clickLocation, close }) => {
   return (
     <>
       <input id="myInput" type="file" ref={(ref) => setUploadRef(ref)} style={{ display: 'none' }} onChange={onChangeFile} />
-      <PopupLayout>
+      <PopupLayout close={closePopup}>
         <div className={'tabSelector'}>
           <div
             className={`tab ${selectedTab === 'images' ? 'tabSelected' : 'tabUnSelected'}`}

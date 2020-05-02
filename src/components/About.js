@@ -13,7 +13,7 @@ const About = () => {
     if(window.innerWidth > 1200) {
       w = 1200
     } else {
-      w = window.innerWidth;
+      w = window.innerWidth - 10;
     }
     h = w * 1080 / 1920;
     setPlayerDimensions({width: w, height: h});
@@ -26,7 +26,7 @@ const About = () => {
     return () => {
       window.removeEventListener("resize", updateDimensions);
     }
-  }, [window])
+  }, [window]);
   return (
     <MainLayout>
       {allowReroute && <Redirect to="/map" />}
@@ -41,6 +41,7 @@ const About = () => {
           title={'Introduction Video'}
         ></iframe>
       </div>
+
       <div className={'buttonContainer'}>
         <div className={'button'} onClick={() => { setAllowReroute(true)}}>Go to the map</div>
       </div>
