@@ -1,15 +1,45 @@
+@import '../../vars';
+
+@media (max-width: $md * 1px) {
+  .instructions {
+    padding: 20px;
+    font-size: 16px;
+    left: 3%;
+    right: 3%;
+    top: 20px;
+    padding: 10px;
+  }
+  .hideLine {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: $md * 1px) {
+  .instructions {
+    padding: 20px;
+    font-size: 20px;
+    left: 10%;
+    right: 10%;
+    top: 20px;
+    padding: 20px 40px;
+  }
+
+  .hideLine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
 .instructions {
-  padding: 20px;
-  font-size: 20px;
   position: absolute;
   z-index: 101;
-  background-color: rgba(0, 0, 0, 0.6);
-  left: 10%;
-  right: 10%;
-  top: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+
   border-radius: 10px;
   color: #ffffff;
-  padding: 20px 40px;
+
 
   .title {
     margin-top: 20px;
@@ -30,15 +60,17 @@
 
   .hideLine {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
+    .hidePermenantly{
+      margin-bottom: 20px;
+    }
     .hideNow {
       background-color: #ffffff;
       color: #000000;
       padding: 10px 40px;
       border-radius: 5px;
       cursor: pointer;
+      text-align: center;
+
       &:hover {
         background-color: #cccccc;
       }

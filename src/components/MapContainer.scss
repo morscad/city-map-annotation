@@ -1,6 +1,9 @@
 @import '../vars';
 
 @media (max-width: $md * 1px) {
+  .mapBlockMain {
+    height: auto;
+  }
   .filtersTitle {
     font-size: 18px;
     margin-right: 40px;
@@ -59,6 +62,11 @@
 }
 
 @media (min-width: $md * 1px) {
+  .mapBlockMain {
+    min-height: 750px;
+    height: calc(100vh - 140px);
+  }
+
   .filtersTitle {
     font-size: 22px;
     margin-right: 40px;
@@ -126,9 +134,6 @@
 
 .mapBlockMain {
   width: 100%;
-  min-height: 750px;
-  height: calc(100vh - 140px);
-  /*background-color: #f1dd81;*/
   background: linear-gradient( 180deg, #f1dd81, #FFFFFF);
   border-radius: 5px 5px 0px 0px;
 }
