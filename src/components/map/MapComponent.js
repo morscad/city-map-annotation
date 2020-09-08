@@ -23,13 +23,13 @@ const MapComponent = ({
         (!force &&
           (map.getCenter().lng() !== mapState.lng || map.getCenter().lat() !== mapState.lat || map.getZoom() !== mapState.zoom))
       ) {
-        const { Ua, Ya } = map.getBounds();
+        const { Va, Za } = map.getBounds();
         setMapState({
           ...mapState,
-          minLng: Ua.i,
-          minLat: Ya.i,
-          maxLng: Ua.j,
-          maxLat: Ya.j,
+          minLng: Va.i,
+          minLat: Za.i,
+          maxLng: Va.j,
+          maxLat: Za.j,
           lng: map.getCenter().lng(),
           lat: map.getCenter().lat(),
         });
